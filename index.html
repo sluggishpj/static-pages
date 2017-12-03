@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>otherWindow</title>
+</head>
+
+<body>
+    <h1>隔壁窗口</h1>
+    <input type="text" class="send-text">
+    <button class="send">发送</button>
+    <div class="content"></div>
+    <script type="text/javascript" src="https://gitee.com/sluggish/staticpages/raw/master/source/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    var $sendText = $('.send-text');
+    var $content = $('.content');
+    var eventSource = null;
+    var eventOrign = null;
+
+    $('.send').click(function() {
+        var text = $sendText.val();
+        eventSource.postMessage(text, eventOrign);
+        $('<p>').text('我：' + text).appendTo($content);
+        $sendText.val('');
+    });
+
+    window.addEventListener('message', receiveMsg, false);
+
+    function receiveMsg(event) {
+        eventOrign = event.origin;
+        eventSource = event.source; // 当前弹出页的来源页面
+        if (eventOrign !== 'http://localhost:8080') {
+            return;
+        }
+
+        console.log('对方（' + eventOrign + '）: ' + event.data);
+        $('<p>').text('对方（' + eventOrign + '）: ' + event.data).appendTo($content);
+    }
+    </script>
+</body>
+
+</html>
