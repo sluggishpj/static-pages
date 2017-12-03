@@ -20,7 +20,7 @@
 
     $('.send').click(function() {
         var text = $sendText.val();
-        eventSource.postMessage(text, eventOrign);
+        eventSource.postMessage(text, eventOrigin);
         $('<p>').text('我：' + text).appendTo($content);
         $sendText.val('');
     });
@@ -31,7 +31,7 @@
         eventOrigin = event.origin;
         eventSource = event.source; // 当前弹出页的来源页面
         console.log(eventOrigin);
-        if (eventOrigin !== 'http://sluggish.gitee.io/staticpages/tab-communication/postMessage') {
+        if (eventOrigin !== 'http://sluggish.gitee.io') {
             return;
         }
 
