@@ -24,7 +24,13 @@
         $('<p>').text('我：' + text).appendTo($content);
         $sendText.val('');
     });
-
+        
+    $sendText.on('keyup', function(e) {
+        if (e.keyCode === 13) {
+            $('.send').click();
+        }
+    });
+        
     window.addEventListener('message', receiveMsg, false);
 
     function receiveMsg(event) {
