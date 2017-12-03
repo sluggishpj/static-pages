@@ -30,6 +30,7 @@
     function receiveMsg(event) {
         eventOrign = event.origin;
         eventSource = event.source; // 当前弹出页的来源页面
+        console.log(eventOrigin);
         if (eventOrign !== 'http://sluggish.gitee.io/staticpages/tab-communication/postMessage') {
             return;
         }
