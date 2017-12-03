@@ -28,15 +28,15 @@
     window.addEventListener('message', receiveMsg, false);
 
     function receiveMsg(event) {
-        eventOrign = event.origin;
+        eventOrigin = event.origin;
         eventSource = event.source; // 当前弹出页的来源页面
         console.log(eventOrigin);
-        if (eventOrign !== 'http://sluggish.gitee.io/staticpages/tab-communication/postMessage') {
+        if (eventOrigin !== 'http://sluggish.gitee.io/staticpages/tab-communication/postMessage') {
             return;
         }
 
-        console.log('对方（' + eventOrign + '）: ' + event.data);
-        $('<p>').text('对方（' + eventOrign + '）: ' + event.data).appendTo($content);
+        console.log('对方（' + eventOrigin + '）: ' + event.data);
+        $('<p>').text('对方（' + eventOrigin + '）: ' + event.data).appendTo($content);
     }
     </script>
 </body>
